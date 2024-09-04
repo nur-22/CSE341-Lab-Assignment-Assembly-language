@@ -1,0 +1,65 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+msg1 DB "Enter three initials: $"
+
+.CODE 
+MAIN PROC 
+;iniitialize DS
+
+MOV AX,@DATA 
+MOV DS,AX      
+;Code here
+
+;DISPLAYING STRING
+LEA DX, msg1
+MOV AH, 9
+INT 21H
+
+;INPUT
+MOV AH, 1 ;STORED IN AL first val
+INT 21H 
+
+MOV BL, AL
+
+MOV AH, 1 ;STORED IN AL middle val
+INT 21H 
+
+MOV CL, AL
+
+
+MOV AH, 1 ;STORED IN AL last val
+INT 21H
+
+MOV BH, AL 
+
+;CURSOR IN THE NEXT LINE
+MOV AH, 2
+MOV DL, 0AH
+INT 21H 
+
+;OUTPUT
+MOV DL, BL ;HERE CL=AL
+INT 21H
+
+MOV AH, 2
+MOV DL, 0AH
+INT 21H 
+
+;OUTPUT
+MOV DL, TRL ;HERE CL=AL
+INT 21H
+
+MOV AH, 2
+MOV DL, 0AH
+INT 21H 
+
+;OUTPUT
+MOV DL, BH
+MOV AH, 2
+INT 21H
+
+
+;exit to DOS    
+MAIN ENDP
+    END MAIN 

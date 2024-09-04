@@ -1,0 +1,56 @@
+.MODEL SMALL
+ 
+.STACK 100H
+.DATA
+ARR DB 30
+MSG1 DB 'Enter the length of the array: $'
+MSG2 DB 'Enter the number: $' 
+MSG3 DB 'Last number entered in the stack: $'
+
+.CODE 
+MAIN PROC
+    MOV AX,@DATA 
+    MOV DS,AX 
+         
+    ;DISPLAY STRING
+    LEA DX, MSG1
+    MOV AH, 09 
+    INT 21H
+    
+    MOV AH, 1
+    INT 21H
+     
+    
+    ;CURSOR IN THE NEXT LINE
+    MOV AH, 2
+    MOV DL, 0AH
+    INT 21H 
+    
+    MOV AH, 2
+    MOV DL, 0DH
+    INT 21H
+    
+    LEA DX, MSG2
+    MOV AH, 09 
+    INT 21H 
+    
+    MOV AH, 01
+    INT 21H
+    
+    ;CURSOR IN THE NEXT LINE
+    MOV AH, 2
+    MOV DL, 0AH
+    INT 21H 
+    
+    MOV AH, 2
+    MOV DL, 0DH
+    INT 21H 
+    
+    LEA DX, MSG3
+    MOV AH, 09 
+    INT 21H  
+
+;exit to DOS    
+MAIN ENDP
+    END MAIN 
+  
